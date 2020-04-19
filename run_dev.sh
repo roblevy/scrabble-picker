@@ -18,7 +18,7 @@ docker network rm $NETWORK_NAME
 # Build
 docker network create $NETWORK_NAME
 docker build --tag $APPNAME-flask:$VERSION api/ 
-docker build --tag $APPNAME-node:$VERSION dist/
+docker build --tag $APPNAME-node:$VERSION web/
 
 # Run
 docker run --rm --name $FLASK_NAME --publish 8000:5000 \
@@ -26,8 +26,8 @@ docker run --rm --name $FLASK_NAME --publish 8000:5000 \
   --network $NETWORK_NAME \
   -d \
   $FLASK_TAG
-docker run --rm --name $NODE_NAME --publish 8080:3000 \
-  --mount type=bind,source="$(pwd)"/src,target=/usr/src/app \
+docker run --rm --name $NODE_NAME --publish 8080:8080 \
+  --mount type=bind,source="$(pwd)"/web,target=/usr/src/app \
   -d \
   --network $NETWORK_NAME \
   $NODE_TAG

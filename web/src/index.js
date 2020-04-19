@@ -5,7 +5,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <p>This is JSX from React</p>
+        <p>This is JSX from React!</p>
       </div>
     );
   }
