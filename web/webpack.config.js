@@ -3,6 +3,12 @@ module.exports = {
   devtool: 'inline-source-map',
   devServer: {
     contentBase: './dist',
+    proxy: {
+      '/api': {
+        target: `http://${process.env.API}:${process.env.API_PORT}`,
+        pathRewrite: {'^/api' : ''}
+      }
+    }
   },
   module: {
     rules: [
@@ -13,6 +19,6 @@ module.exports = {
           loader: 'babel-loader',
         }
       }
-    ]
+    ],
   }
 }

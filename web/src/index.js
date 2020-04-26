@@ -9,11 +9,12 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/')
+    axios.get('/api')
       .then(res => this.setState({
-        api_response: res
+        api_response: res.data
       }))
   }
+
   render() {
     return (
       <div>
@@ -21,8 +22,8 @@ class App extends React.Component {
         <p>
           {
             this.state.api_response ?
-              'Waiting...' :
-              this.state.api_response
+              this.state.api_response :
+              'Waiting...'
           }
         </p>
       </div>

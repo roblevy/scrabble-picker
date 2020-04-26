@@ -1,33 +1,36 @@
 APPNAME=scrabble-picker
 VERSION=0.0.1
 
-FLASK_NAME=$APPNAME-flask
-NODE_NAME=$APPNAME-node
+API_NAME=$APPNAME-api
+WEB_NAME=$APPNAME-web
 
-FLASK_TAG=$FLASK_NAME:$VERSION
-NODE_TAG=$NODE_NAME:$VERSION
+API_TAG=$API_NAME:$VERSION
+WEB_TAG=$WEB_NAME:$VERSION
 
+API_PORT=5000
 NETWORK_NAME=scrabble-net
 
 # Clean up
 docker image prune -f
-docker stop $FLASK_NAME
-docker stop $NODE_NAME
+docker stop $API_NAME
+docker stop $WEB_NAME
 docker network rm $NETWORK_NAME
 
 # Build
 docker network create $NETWORK_NAME
-docker build --tag $APPNAME-flask:$VERSION api/ 
-docker build --tag $APPNAME-node:$VERSION web/
+docker build --tag $APPNAME-api:$VERSION api/ 
+docker build --tag $APPNAME-web:$VERSION web/
 
 # Run
-docker run --rm --name $FLASK_NAME --publish 8000:5000 \
+docker run --rm --name $API_NAME \
   --mount type=bind,source="$(pwd)"/api,target=/usr/src/app \
   --network $NETWORK_NAME \
   -d \
-  $FLASK_TAG
-docker run --rm --name $NODE_NAME --publish 8080:8080 \
+  $API_TAG
+docker run --rm --name $WEB_NAME --publish 8080:8080 \
   --mount type=bind,source="$(pwd)"/web,target=/usr/src/app \
   -d \
+  --env API=$API_NAME \
+  --env API_PORT=$API_PORT \
   --network $NETWORK_NAME \
-  $NODE_TAG
+  $WEB_TAG
