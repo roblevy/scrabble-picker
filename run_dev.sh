@@ -22,7 +22,7 @@ docker build --tag $APPNAME-api:$VERSION api/
 docker build --tag $APPNAME-web:$VERSION web/
 
 # Run
-docker run --rm --name $API_NAME \
+docker run --rm --name $API_NAME --publish 5050:5000 \
   --mount type=bind,source="$(pwd)"/api,target=/usr/src/app \
   --network $NETWORK_NAME \
   -d \
