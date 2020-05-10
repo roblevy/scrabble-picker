@@ -3,7 +3,7 @@ from datetime import datetime
 from typing import List, Union
 from uuid import UUID
 from uuid import uuid4
-from models.user import User
+from scrabble.models.user import User
 
 
 @dataclass
