@@ -32,6 +32,7 @@ LETTER_COUNTS = {
 
 ALL_LETTERS = ''.join(k * v for k, v in LETTER_COUNTS.items())
 
+
 class Game(models.Model):
     game_code = models.CharField(max_length=5)
     letters_drawn = models.CharField(default='', max_length=len(ALL_LETTERS))
