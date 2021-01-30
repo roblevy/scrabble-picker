@@ -8,8 +8,8 @@ class GameSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Game
-        fields = ['game_code']
-        read_only_fields = ['game_code']
+        fields = ['game_code', 'letters_remaining']
+        read_only_fields = ['game_code', 'letters_remaining']
 
     def create(self, validated_data):
         game_code = uuid4().hex[:4]

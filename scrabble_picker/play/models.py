@@ -1,4 +1,6 @@
 from django.db import models
+import random
+from typing import Dict
 
 LETTER_COUNTS = {
     'a': 9,
@@ -27,12 +29,17 @@ LETTER_COUNTS = {
     'x': 1,
     'y': 2,
     'z': 1,
-    '*': 2
+    '*': 2,
 }
 
-ALL_LETTERS = ''.join(k * v for k, v in LETTER_COUNTS.items())
+
+def letter_string(letter_counts: Dict[str, int]) -> str:
+    return ''.join(k * v for k, v in letter_counts.items())
+
+
+ALL_LETTERS = letter_string(LETTER_COUNTS)
 
 
 class Game(models.Model):
-    game_code = models.CharField(max_length=5)
-    letters_drawn = models.CharField(default='', max_length=len(ALL_LETTERS))
+    game_code = models.CharField(max_length=5, primary_key=True)
+    letters_remaining = models.CharField(default=ALL_LETTERS, max_length=len(ALL_LETTERS))

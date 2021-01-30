@@ -1,18 +1,26 @@
-from uuid import uuid4
-
 from rest_framework import viewsets
+import random
+from rest_framework.decorators import action
 
 from scrabble_picker.play.models import Game
 from scrabble_picker.play.serializers import GameSerializer
-
+from rest_framework.response import Response
 
 class GameViewSet(viewsets.ModelViewSet):
-    queryset = Game.objects.all().order_by('game_code')
+    queryset = Game.objects.all()
     serializer_class = GameSerializer
 
-
-def games_create():
-    game_code = uuid4().hex[:4]
-    game = Game(game_code=game_code)
-    game.save()
-    return game_code
+    @action(detail=True, methods=['get', 'post'])
+    def draw(self, request, *args, **kwargs):
+        '''
+        Draw `letters_count` letters from the bag
+        '''
+        game = self.get_object()
+        drawn_letters = []
+        for i in range(request.data['count']):
+            letters_remaining = game.letters_remaining
+            drawn_letter = random.choice(letters_remaining)
+            game.letters_remaining = letters_remaining.replace(drawn_letter, '', 1)
+            drawn_letters.append(drawn_letter)
+        game.save()
+        return Response(drawn_letters)
