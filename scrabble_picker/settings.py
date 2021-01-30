@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'picker.apps.PickerConfig',
+    'scrabble_picker.play.apps.Play',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

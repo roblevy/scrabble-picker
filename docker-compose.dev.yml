@@ -14,7 +14,6 @@ services:
       retries: 5
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
     entrypoint: |
       watchmedo auto-restart \
         --recursive \
@@ -22,7 +21,7 @@ services:
         --directory="." \
         python manage.py runserver 0.0.0.0:8000                     
     volumes:
-      - .:/picker
+      - .:/scrabble_picker
     ports:
       - "8000:8000"
     depends_on:

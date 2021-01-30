@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from .models import Game
+from scrabble_picker.play.models import Game
 
 
 class GameSerializer(serializers.HyperlinkedModelSerializer):
