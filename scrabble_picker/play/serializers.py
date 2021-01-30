@@ -4,10 +4,15 @@ from scrabble_picker.play.models import Game
 from uuid import uuid4
 
 
-class GameSerializer(serializers.HyperlinkedModelSerializer):
-    model = Game
-    fields = {"game_code": serializers.CharField(max_length=5)}
+class GameSerializer(serializers.ModelSerializer):
 
-    def create(self):
+    class Meta:
+        model = Game
+        fields = ['game_code']
+        read_only_fields = ['game_code']
+
+    def create(self, validated_data):
         game_code = uuid4().hex[:4]
-        return Game.objects.create(game_code=game_code)
+        game = Game(game_code=game_code)
+        game.save()
+        return game
