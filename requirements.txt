@@ -3,3 +3,4 @@ PyYAML>=5.4.1
 djangorestframework>=3.12.2
 psycopg2>=2.8.6
 uritemplate>=3.0.1
+watchdog[watchmedo]
