@@ -1,6 +1,7 @@
 FROM python:3
 ENV PYTHONUNBUFFERED=1
-WORKDIR /scrabble_picker
-COPY requirements.txt /scrabble_picker/
+WORKDIR /app
+COPY requirements.txt /app/
+COPY manage.py /app/
 RUN pip install -r requirements.txt
-COPY . /scrabble_picker/
+COPY ./api /app/api/

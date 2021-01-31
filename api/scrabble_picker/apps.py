@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class Play(AppConfig):
+class ScrabblePicker(AppConfig):
     name = 'api.scrabble_picker'
