@@ -33,7 +33,6 @@ export default {
           params: { id: response.data.game_code },
         });
       });
-      console.log("Click");
     },
   },
 };

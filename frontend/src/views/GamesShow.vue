@@ -14,7 +14,9 @@
     <div class="last-drawn">
       <ol>
         <li v-for="(letter, index) in letters_drawn" :key="`letter-${index}`">
-          {{ letter }}
+          <div class="letter-box">
+            {{ letter }}
+          </div>
         </li>
       </ol>
     </div>
@@ -58,3 +60,27 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+@import url('https://fonts.googleapis.com/css2?family=News+Cycle:wght@700&display=swap');
+ol {
+  list-style-type: none;
+}
+.last-drawn {
+  display: flex;
+  flex-direction: column
+}
+.last-drawn ol {
+}
+
+.last-drawn li div {
+  align-items: center;
+  background-color: #e6d1a3;
+  border-radius: 16%;  
+  display: flex;
+  font-family: 'News Cycle', sans-serif;
+  height: 75px;
+  justify-content: space-around;
+  width: 75px;
+}
+</style>
