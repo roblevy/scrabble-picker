@@ -24,4 +24,4 @@ class GameViewSet(viewsets.ModelViewSet):
             game.letters_remaining = letters_remaining.replace(drawn_letter, '', 1)
             drawn_letters.append(drawn_letter)
         game.save()
-        return Response(drawn_letters)
+        return Response({ "game": GameSerializer(game).data, "letters_drawn": drawn_letters })
