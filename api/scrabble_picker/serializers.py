@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from scrabble_picker.play.models import Game
+from api.scrabble_picker.models import Game
 from uuid import uuid4
 
 

@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'scrabble_picker.play.apps.Play',
+    'api.scrabble_picker.apps.Play',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',

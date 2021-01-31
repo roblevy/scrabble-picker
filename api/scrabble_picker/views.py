@@ -2,9 +2,10 @@ from rest_framework import viewsets
 import random
 from rest_framework.decorators import action
 
-from scrabble_picker.play.models import Game
-from scrabble_picker.play.serializers import GameSerializer
+from api.scrabble_picker.models import Game
+from api.scrabble_picker.serializers import GameSerializer
 from rest_framework.response import Response
+
 
 class GameViewSet(viewsets.ModelViewSet):
     queryset = Game.objects.all()
