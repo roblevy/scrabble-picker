@@ -4,7 +4,7 @@
       <li
         v-for="game in games"
         :key="game.game_code"
-      >{{ game.game_code }}</li>
+      ><a :href="`/games/${game.game_code}/`">{{ game.game_code }}</a></li>
     </ol>
   </div>
 </template>
