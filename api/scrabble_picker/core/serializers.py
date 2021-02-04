@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from api.scrabble_picker.models import Game
+from scrabble_picker.core.models import Game
 
 
 class GameSerializer(serializers.ModelSerializer):

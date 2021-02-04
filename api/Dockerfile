@@ -4,4 +4,4 @@ WORKDIR /app
 COPY requirements.txt /app/
 COPY manage.py /app/
 RUN pip install -r requirements.txt
-COPY ./api /app/api/
+COPY ./scrabble_picker /app/scrabble_picker/

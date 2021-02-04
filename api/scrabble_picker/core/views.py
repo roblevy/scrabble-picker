@@ -2,8 +2,8 @@ from rest_framework import viewsets
 import random
 from rest_framework.decorators import action
 
-from api.scrabble_picker.models import Game
-from api.scrabble_picker.serializers import GameSerializer
+from scrabble_picker.core.models import Game
+from scrabble_picker.core.serializers import GameSerializer
 from rest_framework.response import Response
 
 

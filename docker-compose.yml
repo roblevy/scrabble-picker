@@ -13,19 +13,17 @@ services:
       timeout: 5s
       retries: 5
   backend:
-    build: .
+    build: ./api
     command: "watchmedo auto-restart --directory='./' --ignore-patterns='.*/.venv.*' --pattern='*.py' --recursive -- python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./api:/app/api/
+      - ./api:/app/
     ports:
       - "8000:8000"
     depends_on:
       db:
         condition: service_healthy
   node:
-    image: "node:15"
-    user: "node"
-    working_dir: /home/node/app
+    build: ./frontend
     environment:
       - NODE_ENV=development
     volumes:

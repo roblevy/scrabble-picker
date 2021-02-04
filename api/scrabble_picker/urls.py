@@ -1,6 +1,6 @@
 from django.urls import include, path
 from rest_framework import routers
-from api.scrabble_picker import views
+from scrabble_picker.core import views
 
 router = routers.DefaultRouter()
 router.register(r'games', views.GameViewSet)
