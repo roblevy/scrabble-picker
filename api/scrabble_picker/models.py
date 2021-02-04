@@ -1,6 +1,8 @@
-from django.db import models
 import random
+import uuid
 from typing import Dict
+
+from django.db import models
 
 LETTER_COUNTS = {
     'a': 9,
@@ -40,6 +42,10 @@ def letter_string(letter_counts: Dict[str, int]) -> str:
 ALL_LETTERS = letter_string(LETTER_COUNTS)
 
 
+def create_game_code() -> str:
+    return uuid.uuid4().hex[:5]
+
+
 class Game(models.Model):
-    game_code = models.CharField(max_length=5, primary_key=True)
+    game_code = models.CharField(max_length=5, primary_key=True, default=create_game_code)
     letters_remaining = models.CharField(default=ALL_LETTERS, max_length=len(ALL_LETTERS))
