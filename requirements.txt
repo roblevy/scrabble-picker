@@ -1,8 +1,9 @@
 Django>=3.1.5
-django-heroku>=0.3.1
 PyYAML>=5.4.1
 django-cors-headers>=3.7.0
+django-heroku>=0.3.1
 djangorestframework>=3.12.2
+gunicorn
 psycopg2>=2.8.6
 uritemplate>=3.0.1
 watchdog[watchmedo]
