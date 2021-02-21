@@ -6,6 +6,7 @@ __pycache__/
 node_modules
 /dist
 .ssh/
+*.pyc
 
 
 # local env files
