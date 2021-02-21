@@ -5,6 +5,13 @@ from rest_framework.decorators import action
 from scrabble_picker.core.models import Game
 from scrabble_picker.core.serializers import GameSerializer
 from rest_framework.response import Response
+from rest_framework.views import APIView
+from rest_framework.renderers import StaticHTMLRenderer
+
+
+class Index(APIView):
+    renderer_classes = [StaticHTMLRenderer]
+    template_name = 'srabble_picker/index.html'
 
 
 class GameViewSet(viewsets.ModelViewSet):

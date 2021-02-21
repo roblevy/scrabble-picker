@@ -13,10 +13,10 @@ services:
       timeout: 5s
       retries: 5
   backend:
-    build: ./api
+    build: .
     command: "watchmedo auto-restart --directory='./' --ignore-patterns='.*/.venv.*' --pattern='*.py' --recursive -- python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./api:/app/
+      - .:/app/
     ports:
       - "8000:8000"
     depends_on:

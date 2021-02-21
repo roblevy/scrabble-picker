@@ -133,3 +133,8 @@ APPEND_SLASH = False
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:8080",
 ]
+
+
+# Configure Django App for Heroku.
+import django_heroku
+django_heroku.settings(locals())
