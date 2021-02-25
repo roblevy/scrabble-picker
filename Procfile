@@ -1,1 +1,1 @@
-web: bin/start-nginx bundle exec gunicorn scrabble_picker.wsgi --log-file -
+web: bin/start-nginx gunicorn scrabble_picker.wsgi --log-file -
