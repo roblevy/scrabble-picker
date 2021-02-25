@@ -38,9 +38,8 @@ export default {
     };
   },
   mounted() {
-    console.log('Mounted');
     axios
-      .get(`http://localhost:8000/games/${this.$route.params.id}/`)
+      .get(`/api/games/${this.$route.params.id}/`)
       .then((response) => {
         this.game = response.data;
         this.letter_count = Math.min(response.data.letters_remaining.length, 7);
@@ -48,9 +47,8 @@ export default {
   },
   methods: {
     draw_letters: function() {
-      console.log('Draw letters');
       axios
-        .post(`http://localhost:8000/games/${this.$route.params.id}/draw/`, {
+        .post(`/api/games/${this.$route.params.id}/draw/`, {
           count: this.letter_count,
         })
         .then((response) => {

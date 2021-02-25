@@ -21,12 +21,12 @@ export default {
   },
   mounted() {
     axios
-      .get("http://localhost:8000/games/")
+      .get("/api/games/")
       .then((response) => (this.games = response.data));
   },
   methods: {
     handleNewClick: function() {
-      axios.post("http://localhost:8000/games/").then((response) => {
+      axios.post("/api/games/").then((response) => {
         console.log(response.data);
         this.$router.push({
           name: "GamesShow",

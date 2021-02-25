@@ -1,0 +1,43 @@
+version: "3.9"
+   
+services:
+  web:
+    image: nginx
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./frontend:/frontend
+      - ./deploy.sh:/usr/bin/
+    ports:
+      - "8001:80"
+    command:
+      - /frontend/deploy.sh
+  db:
+    image: postgres
+    environment:
+      - POSTGRES_DB=scrabble
+      - POSTGRES_USER=scrabble
+      - POSTGRES_PASSWORD=scrabble
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U scrabble"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  backend:
+    build: .
+    command: "watchmedo auto-restart --directory='./' --ignore-patterns='.*/.venv.*' --pattern='*.py' --recursive -- python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - .:/app/
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+  node:
+    build: ./frontend
+    environment:
+      - NODE_ENV=development
+    volumes:
+      - ./frontend:/home/node/app
+    ports:
+      - "8080:8080"
+    command: "yarn serve"
